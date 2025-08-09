@@ -1,0 +1,16 @@
+.dart_tool/
+.packages
+.pub-cache/
+build/
+.dart_tool/
+flutter_*.png
+**/ios/Flutter/Flutter.podspec
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/ephemeral/
+**/macos/Flutter/ephemeral/
+**/web/.dart_tool/
+**/web/wasm/
+.idea/
+.vscode/

@@ -1,0 +1,10 @@
+{
+  "name": "Focus Vibe Pomodoro",
+  "short_name": "FocusVibe",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "description": "Advanced Pomodoro timer with calendar tracking.",
+  "icons": []
+}
