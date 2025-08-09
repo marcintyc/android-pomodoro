@@ -10,6 +10,7 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsControllerProvider);
     final controller = ref.read(settingsControllerProvider.notifier);
+    final c = Theme.of(context).colorScheme;
 
     return SafeArea(
       child: ListView(
@@ -17,7 +18,7 @@ class SettingsScreen extends ConsumerWidget {
         children: [
           Text('Settings', style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
           const SizedBox(height: 16),
-          _Section(title: 'Durations', children: [
+          _Section(title: 'Durations', bg: c.surfaceContainerHighest.withValues(alpha: 0.18), children: [
             _NumberTile(
               label: 'Focus minutes',
               value: settings.workMinutes,
@@ -48,7 +49,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ]),
           const SizedBox(height: 16),
-          _Section(title: 'Behavior', children: [
+          _Section(title: 'Behavior', bg: c.surfaceContainerHighest.withValues(alpha: 0.18), children: [
             SwitchListTile.adaptive(
               value: settings.autoStartBreaks,
               onChanged: (v) => controller.update(autoStartBreaks: v),
@@ -77,14 +78,15 @@ class SettingsScreen extends ConsumerWidget {
 
 class _Section extends StatelessWidget {
   final String title;
+  final Color bg;
   final List<Widget> children;
-  const _Section({required this.title, required this.children});
+  const _Section({required this.title, required this.children, required this.bg});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.2),
+      color: bg,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -134,7 +136,7 @@ class _NumberTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.5),
+          color: Theme.of(context).colorScheme.surfaceContainerHigh.withValues(alpha: 0.35),
         ),
         child: Text('$value min', style: Theme.of(context).textTheme.labelLarge),
       ),

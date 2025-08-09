@@ -12,12 +12,11 @@ class CalendarScreen extends ConsumerWidget {
     final log = ref.watch(sessionLogProvider);
     final dateMap = log.toDateMap();
 
-    // Convert seconds to minutes for display intensity
     final values = <DateTime, int>{
       for (final e in dateMap.entries) DateTime(e.key.year, e.key.month, e.key.day): (e.value / 60).round(),
     };
 
-    final color = Theme.of(context).colorScheme.primary;
+    final c = Theme.of(context).colorScheme;
 
     return SafeArea(
       child: ListView(
@@ -33,7 +32,7 @@ class CalendarScreen extends ConsumerWidget {
           const SizedBox(height: 16),
           Card(
             elevation: 0,
-            color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.2),
+            color: c.surfaceContainerHighest.withValues(alpha: 0.18),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -45,12 +44,12 @@ class CalendarScreen extends ConsumerWidget {
                 colorMode: ColorMode.color,
                 datasets: values,
                 colorsets: {
-                  1: color.withOpacity(0.15),
-                  10: color.withOpacity(0.25),
-                  20: color.withOpacity(0.35),
-                  30: color.withOpacity(0.45),
-                  45: color.withOpacity(0.60),
-                  60: color.withOpacity(0.80),
+                  1: c.primary.withValues(alpha: 0.15),
+                  10: c.primary.withValues(alpha: 0.25),
+                  20: c.primary.withValues(alpha: 0.35),
+                  30: c.primary.withValues(alpha: 0.50),
+                  45: c.primary.withValues(alpha: 0.70),
+                  60: c.primary.withValues(alpha: 0.90),
                 },
                 onClick: (date) {},
               ),
@@ -94,9 +93,10 @@ class _StatTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = Theme.of(context).colorScheme;
     return Card(
       elevation: 0,
-      color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.2),
+      color: c.surfaceContainerHighest.withValues(alpha: 0.18),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),

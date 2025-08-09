@@ -10,8 +10,8 @@ class ProgressRing extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.primary;
     return SizedBox(
-      height: 280,
-      width: 280,
+      height: 300,
+      width: 300,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -19,10 +19,10 @@ class ProgressRing extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               boxShadow: [
-                BoxShadow(color: color.withOpacity(0.25), blurRadius: 40, spreadRadius: 6),
-                BoxShadow(color: color.withOpacity(0.15), blurRadius: 80, spreadRadius: 16),
+                BoxShadow(color: color.withValues(alpha: 0.35), blurRadius: 50, spreadRadius: 8),
+                BoxShadow(color: color.withValues(alpha: 0.18), blurRadius: 100, spreadRadius: 20),
               ],
-              gradient: RadialGradient(colors: [color.withOpacity(0.14), Colors.transparent], radius: 0.9),
+              gradient: RadialGradient(colors: [color.withValues(alpha: 0.16), Colors.transparent], radius: 0.9),
             ),
           ),
           TweenAnimationBuilder<double>(
@@ -34,7 +34,7 @@ class ProgressRing extends StatelessWidget {
                 strokeWidth: 14,
                 strokeCap: StrokeCap.round,
                 color: color,
-                backgroundColor: color.withOpacity(0.15),
+                backgroundColor: color.withValues(alpha: 0.15),
               );
             },
           ),

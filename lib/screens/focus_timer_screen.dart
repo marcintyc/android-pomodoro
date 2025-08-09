@@ -5,6 +5,7 @@ import '../state/timer_controller.dart';
 import '../state/settings.dart';
 import '../state/session_log_service.dart';
 import '../widgets/progress_ring.dart';
+// ignore_for_file: unnecessary_import
 import 'dart:ui' show FontFeature;
 
 class FocusTimerScreen extends ConsumerWidget {
@@ -29,7 +30,7 @@ class FocusTimerScreen extends ConsumerWidget {
     final todaySeconds = ref.watch(sessionLogProvider).focusedSecondsOn(DateTime.now());
     final todayMinutes = (todaySeconds / 60).floor();
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final c = Theme.of(context).colorScheme;
 
     return SafeArea(
       child: Padding(
@@ -44,12 +45,12 @@ class FocusTimerScreen extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: colorScheme.primaryContainer.withOpacity(0.3),
+                    color: c.primary.withValues(alpha: 0.10),
                     borderRadius: BorderRadius.circular(999),
-                    border: Border.all(color: colorScheme.primaryContainer.withOpacity(0.4)),
+                    border: Border.all(color: c.primary.withValues(alpha: 0.20)),
                   ),
                   child: Row(children: [
-                    Icon(Icons.local_fire_department, color: colorScheme.primary, size: 18),
+                    Icon(Icons.local_fire_department, color: c.primary, size: 18),
                     const SizedBox(width: 6),
                     Text('$todayMinutes min today'),
                   ]),
@@ -63,7 +64,7 @@ class FocusTimerScreen extends ConsumerWidget {
                 center: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(_labelFor(timer.sessionType), style: Theme.of(context).textTheme.titleMedium?.copyWith(color: colorScheme.primary)),
+                    Text(_labelFor(timer.sessionType), style: Theme.of(context).textTheme.titleMedium?.copyWith(color: c.primary)),
                     const SizedBox(height: 12),
                     Text(
                       timer.timeLabel,
@@ -72,7 +73,7 @@ class FocusTimerScreen extends ConsumerWidget {
                     const SizedBox(height: 12),
                     Text(
                       'Cycle ${timer.completedFocusSessions % settings.longBreakEvery + 1}/${settings.longBreakEvery}',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: colorScheme.onSurfaceVariant),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: c.onSurfaceVariant),
                     ),
                   ],
                 ),
