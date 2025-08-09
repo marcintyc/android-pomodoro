@@ -16,11 +16,14 @@ jobs:
         java-version: '11'
     - uses: subosito/flutter-action@v2
       with:
-        channel: 'stable' # Używa domyślnej stabilnej wersji, możesz dostosować
-    - run: flutter doctor -v # Sprawdza wersję Fluttera
-    - run: flutter create --platforms android .
+        channel: 'stable'
+    - run: flutter doctor -v
+    - run: |
+        if [ ! -d "ios" ]; then
+          flutter create --platforms ios .
+        fi
     - run: git config user.name github-actions
     - run: git config user.email github-actions@github.com
     - run: git add .
-    - run: git commit -m "Add Android folder with Flutter setup"
+    - run: git commit -m "Add iOS folder with Flutter setup" || echo "No changes to commit"
     - run: git push
