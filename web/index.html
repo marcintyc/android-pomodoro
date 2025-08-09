@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="$FLUTTER_BASE_HREF">
+    <meta charset="UTF-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta name="description" content="Focus Vibe Pomodoro" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Focus Vibe Pomodoro</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#121212" />
+    <style>
+      html, body { height: 100%; }
+      body { margin: 0; font-family: system-ui, -apple-system, Roboto, 'Segoe UI', 'Helvetica Neue', Arial; background: #121212; }
+      #loading { display: grid; place-items: center; height: 100vh; color: #fff; opacity: 0.9; }
+      .spinner { width: 64px; height: 64px; border: 6px solid rgba(255,255,255,0.1); border-top-color: #7C4DFF; border-radius: 50%; animation: spin 1s linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div id="loading"><div class="spinner"></div></div>
+    <script src="flutter.js" defer></script>
+    <script>
+      window.addEventListener('load', function(ev) {
+        _flutter.loader.loadEntrypoint({}).then(function(engineInitializer) {
+          return engineInitializer.initializeEngine();
+        }).then(function(appRunner) {
+          document.querySelector('#loading')?.remove();
+          return appRunner.runApp();
+        });
+      });
+    </script>
+  </body>
+</html>
